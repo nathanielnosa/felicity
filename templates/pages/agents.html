@@ -1,8 +1,274 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}Felicity Property Limited |Agents{% endblock title %}
 
 {% block content %}
 
-<h1>Agent</h1>
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="dsiplay-4">Our Agents</h1>
+          <p class="lead">Meet our best agents with exceptional real estate experiences.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- bedcrumb -->
+  <section id="bd" class="my-3">
+    <div class="container">
+      <nav aria-label="breadcrumb" class=" bg-light py-2 rounded px-2">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a>
+          </li>
+          <li class="breadcrumb-item active">Agents</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- seller of the month -->
+  <section id="about" class="py-4">
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-md-8">
+          <h3>We Search For The Perfect Home</h3>
+          <p class="lead">Felicity Property Limited is dedicated to crafting seamless real estate journeys, fostering enduring satisfaction.</p>
+          <img src="{% static 'img/bn1.jpg' %}" alt="" class="img-fluid">
+          <p class="mt-4">Whether you're on a business trip, relocating, or simply craving a change of scenery, our short let service ensures a seamless and comfortable stay. Contact us today to explore our exclusive short-term rental options and make your temporary haven a memorable one</p>
+        </div>
+        {% if showmvp %}
+          
+        {% for mvp in showmvp %}
+          <div class="col-md-4">
+            <div class="card">
+              <img src="{{ mvp.photo.url }}" height="500" alt="{{mvp.name }}" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">Seller Of The Month</h5>
+                <hr>
+                <h6 class="text-secondary">{{mvp.name}}</h6>
+                <p class="card-text">{{mvp.description}}</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        
+        {% else %}
+        <div class="col-md-12">
+          <p class="lead">No Seller of The Month</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <!-- work -->
+<section id="work" class="bg-dark text-center py-5">
+    <h2 class="display-4 text-white ">We Work For You</h2>
+    <p class="text-white w-50 mx-auto lead">At Felicity Property Limited, our mission is to empower dreams through unparalleled real estate experiences.</p>
+    <hr>
+    <a href="" class="btn btn-secondary text-white btn-lg">View Our Featured Listings</a>
+  </section>
+
+
+  <!-- =======Team Section ======= -->
+    <section class="section-agents section-t8">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-12">
+            <div class="title-wrap d-flex justify-content-between">
+            <div class="title-box">
+                <h2 class="title-a">Our Team</h2>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-4">
+            <div class="card-box-d">
+            <div class="card-img-d">
+                <img src="assets/img/agent-7.jpg" alt="" class="img-d img-fluid">
+            </div>
+            <div class="card-overlay card-overlay-hover">
+                <div class="card-header-d">
+                <div class="card-title-d align-self-center">
+                    <h3 class="title-d">
+                    <a href="agent-single.html" class="link-two">Margaret Sotillo
+                        <br> Escala</a>
+                    </h3>
+                </div>
+                </div>
+                <div class="card-body-d">
+                <p class="content-d color-text-a">
+                    Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
+                </p>
+                <div class="info-agents color-a">
+                    <p>
+                    <strong>Phone: </strong> +54 356 945234
+                    </p>
+                    <p>
+                    <strong>Email: </strong> agents@example.com
+                    </p>
+                </div>
+                </div>
+                <div class="card-footer-d">
+                <div class="socials-footer d-flex justify-content-center">
+                    <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                        <i class="bi bi-facebook" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                        <i class="bi bi-twitter" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                        <i class="bi bi-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                        <i class="bi bi-linkedin" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-box-d">
+            <div class="card-img-d">
+                <img src="assets/img/agent-6.jpg" alt="" class="img-d img-fluid">
+            </div>
+            <div class="card-overlay card-overlay-hover">
+                <div class="card-header-d">
+                <div class="card-title-d align-self-center">
+                    <h3 class="title-d">
+                    <a href="agent-single.html" class="link-two">Stiven Spilver
+                        <br> Darw</a>
+                    </h3>
+                </div>
+                </div>
+                <div class="card-body-d">
+                <p class="content-d color-text-a">
+                    Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
+                </p>
+                <div class="info-agents color-a">
+                    <p>
+                    <strong>Phone: </strong> +54 356 945234
+                    </p>
+                    <p>
+                    <strong>Email: </strong> agents@example.com
+                    </p>
+                </div>
+                </div>
+                <div class="card-footer-d">
+                <div class="socials-footer d-flex justify-content-center">
+                    <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                        <i class="bi bi-facebook" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                        <i class="bi bi-twitter" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                        <i class="bi bi-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                        <i class="bi bi-linkedin" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                        <i class="bi bi-dribbble" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-box-d">
+            <div class="card-img-d">
+                <img src="assets/img/agent-5.jpg" alt="" class="img-d img-fluid">
+            </div>
+            <div class="card-overlay card-overlay-hover">
+                <div class="card-header-d">
+                <div class="card-title-d align-self-center">
+                    <h3 class="title-d">
+                    <a href="agent-single.html" class="link-two">Emma Toledo
+                        <br> Cascada</a>
+                    </h3>
+                </div>
+                </div>
+                <div class="card-body-d">
+                <p class="content-d color-text-a">
+                    Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
+                </p>
+                <div class="info-agents color-a">
+                    <p>
+                    <strong>Phone: </strong> +54 356 945234
+                    </p>
+                    <p>
+                    <strong>Email: </strong> agents@example.com
+                    </p>
+                </div>
+                </div>
+                <div class="card-footer-d">
+                <div class="socials-footer d-flex justify-content-center">
+                    <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                        <i class="bi bi-facebook" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                        <i class="bi bi-twitter" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                        <i class="bi bi-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                        <i class="bi bi-linkedin" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="link-one">
+                        <i class="bi bi-dribbble" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+        
     
 {% endblock content %}

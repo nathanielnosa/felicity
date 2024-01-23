@@ -1,8 +1,268 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Felicity Property Limited |About{% endblock title %}
 
 {% block content %}
 
-<h1>About</h1>
+
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="dsiplay-4">About Real Estate</h1>
+          <p class="lead">Felicity Property Limited: Elevating Dreams, Building Trust. Your partner in exceptional real estate experiences.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- bedcrumb -->
+  <section id="bd" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb" class=" bg-light py-2 rounded px-2">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a>
+          </li>
+          <li class="breadcrumb-item active">About</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ======= About Section ======= -->
+  <section class="section-about mt-5">
+    <div class="container">
+      <div class="row">
+    
+        <div class="col-md-12 section-t8 position-relative">
+          <div class="row">
+            <div class="col-md-8 col-lg-5">
+              <img src="{% static 'img/about.avif' %}" alt="" class="img-fluid h-75">
+            </div>
+            <div class="col-lg-2  d-none d-lg-block position-relative">
+              <div class="title-vertical d-flex justify-content-start">
+                <span>FELICITY PROPERTY LIMITED</span>
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-5 section-md-t3">
+              <div class="title-box-d">
+                <h3 class="title-d">Our
+                  <span class="color-d">MISSION</span>
+                </h3>
+              </div>
+              <p class="color-text-a">
+                At Felicity Property Limited, our mission is to redefine the landscape of real estate by fostering dreams and creating enduring value for our clients. We are dedicated to providing unparalleled experiences, crafting homes that resonate with individual aspirations.
+              </p>
+              <p class="color-text-a">
+                Driven by a commitment to excellence, we embark on every project with a passion for innovation and a focus on quality. Our goal is not just to build structures but to curate living spaces that inspire and elevate lifestyles. Through thoughtful design, sustainable practices, and community engagement, we aim to leave a lasting imprint on the places we touch.
+              </p>
+              <p class="color-text-a">
+                Trust is the cornerstone of our mission. We prioritize transparency, integrity, and client satisfaction in every interaction. By understanding the unique needs of our clients, we tailor our approach to exceed expectations, ensuring each property reflects the essence of its occupants.
+              </p>
+              <p class="color-text-a">
+                At Felicity Property Limited, we go beyond constructing houses; we build homes where dreams flourish and futures unfold. Join us on this journey of empowerment, where your aspirations meet our commitment to excellence, creating a legacy of inspired living.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- =======Team Section ======= -->
+<section class="section-agents section-t8">
+<div class="container">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="title-wrap d-flex justify-content-between">
+        <div class="title-box">
+            <h2 class="title-a">Our Team</h2>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-4">
+        <div class="card-box-d">
+        <div class="card-img-d">
+            <img src="assets/img/agent-7.jpg" alt="" class="img-d img-fluid">
+        </div>
+        <div class="card-overlay card-overlay-hover">
+            <div class="card-header-d">
+            <div class="card-title-d align-self-center">
+                <h3 class="title-d">
+                <a href="agent-single.html" class="link-two">Margaret Sotillo
+                    <br> Escala</a>
+                </h3>
+            </div>
+            </div>
+            <div class="card-body-d">
+            <p class="content-d color-text-a">
+                Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
+            </p>
+            <div class="info-agents color-a">
+                <p>
+                <strong>Phone: </strong> +54 356 945234
+                </p>
+                <p>
+                <strong>Email: </strong> agents@example.com
+                </p>
+            </div>
+            </div>
+            <div class="card-footer-d">
+            <div class="socials-footer d-flex justify-content-center">
+                <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                    <i class="bi bi-facebook" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                    <i class="bi bi-twitter" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                    <i class="bi bi-instagram" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                    <i class="bi bi-linkedin" aria-hidden="true"></i>
+                    </a>
+                </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card-box-d">
+        <div class="card-img-d">
+            <img src="assets/img/agent-6.jpg" alt="" class="img-d img-fluid">
+        </div>
+        <div class="card-overlay card-overlay-hover">
+            <div class="card-header-d">
+            <div class="card-title-d align-self-center">
+                <h3 class="title-d">
+                <a href="agent-single.html" class="link-two">Stiven Spilver
+                    <br> Darw</a>
+                </h3>
+            </div>
+            </div>
+            <div class="card-body-d">
+            <p class="content-d color-text-a">
+                Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
+            </p>
+            <div class="info-agents color-a">
+                <p>
+                <strong>Phone: </strong> +54 356 945234
+                </p>
+                <p>
+                <strong>Email: </strong> agents@example.com
+                </p>
+            </div>
+            </div>
+            <div class="card-footer-d">
+            <div class="socials-footer d-flex justify-content-center">
+                <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                    <i class="bi bi-facebook" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                    <i class="bi bi-twitter" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                    <i class="bi bi-instagram" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                    <i class="bi bi-linkedin" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                    <i class="bi bi-dribbble" aria-hidden="true"></i>
+                    </a>
+                </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card-box-d">
+        <div class="card-img-d">
+            <img src="assets/img/agent-5.jpg" alt="" class="img-d img-fluid">
+        </div>
+        <div class="card-overlay card-overlay-hover">
+            <div class="card-header-d">
+            <div class="card-title-d align-self-center">
+                <h3 class="title-d">
+                <a href="agent-single.html" class="link-two">Emma Toledo
+                    <br> Cascada</a>
+                </h3>
+            </div>
+            </div>
+            <div class="card-body-d">
+            <p class="content-d color-text-a">
+                Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.
+            </p>
+            <div class="info-agents color-a">
+                <p>
+                <strong>Phone: </strong> +54 356 945234
+                </p>
+                <p>
+                <strong>Email: </strong> agents@example.com
+                </p>
+            </div>
+            </div>
+            <div class="card-footer-d">
+            <div class="socials-footer d-flex justify-content-center">
+                <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                    <i class="bi bi-facebook" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                    <i class="bi bi-twitter" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                    <i class="bi bi-instagram" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                    <i class="bi bi-linkedin" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                    <i class="bi bi-dribbble" aria-hidden="true"></i>
+                    </a>
+                </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
     
 {% endblock content %}
