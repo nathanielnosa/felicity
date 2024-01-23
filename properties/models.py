@@ -32,7 +32,7 @@ class Listing(models.Model):
     agent = models.ForeignKey(Agent, on_delete=models.DO_NOTHING)
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
     slug = models.SlugField(max_length=150, unique=True, blank=True, null=True)
-    listing_id = models.IntegerField(default=random.randint(1000, 9999), unique=True)
+    listing_id = models.IntegerField(unique=True,blank=True, null=True)
     listing_type = models.CharField(max_length=150,choices=LISTING_TYPE)
     title = models.CharField(max_length=225)
     address = models.CharField(max_length=225)
@@ -64,6 +64,12 @@ class Listing(models.Model):
     updated_at = models.DateTimeField(auto_now=True,blank=True,)
 
     def save(self, *args, **kwargs):
+        # Generate a new random 4-digit number for listing_id
+        if not self.listing_id:
+            self.listing_id = random.randint(1000, 9999)
+            while Listing.objects.filter(listing_id=self.listing_id).exists():
+                # Ensure uniqueness by regenerating if the chosen number already exists
+                self.listing_id = random.randint(1000, 9999)
         # Generate slug when saving the object
         if not self.slug:
             self.slug = slugify(self.title)
