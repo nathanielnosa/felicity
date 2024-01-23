@@ -1,0 +1,19 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+ <!-- Favicons -->
+ 
+ {% block title %} FPL | Admin Dashboard {% endblock title %}
+ 
+ {% block branding %}
+ 
+<h1 id="head">
+  <img class="brand_img" src="{% static 'img/logo.png' %}" alt="real estate">
+  Admin Area
+</h1>
+
+{% endblock branding %}
+
+{% block extrastyle %}
+<link href="{% static 'img/logo.png' %}" rel="icon">
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock extrastyle %}
