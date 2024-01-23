@@ -194,6 +194,14 @@
     }
   });
 
+
+
+  /**
+   * light box
+   */
+
+
+
   /**
    * Property Single carousel
    */

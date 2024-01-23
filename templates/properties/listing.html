@@ -1,0 +1,297 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+{% block title %}Felicity Property Limited |Property{% endblock title %}
+
+{% block content %}
+
+<section id="showcase-inner" class="py-5 text-white">
+  <div class="container">
+    <div class="row text-center">
+      {% if shows %}  
+      <div class="col-md-12">
+        <h1 class="display-4">{{shows.title}}</h1>
+        <p class="lead">
+          <i class="fas fa-map-marker"></i> {{shows.city}} {{shows.state}}, {{shows.zipcode}}
+        </p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<main id="main">
+<!-- ======= Intro Single ======= -->
+<!-- listings -->
+<section id="listing" class="py-4">
+    <div class="container">
+        <a href="{% url 'property' %}" class="btn btn-light mb-4">&larr; Back To Listings</a>
+        <!-- first row image and summary -->
+        <div class="row">
+        <div class="col-md-8">
+            <!-- home main img -->
+            <img src="{{shows.photo_main.url}}" alt="" class="img-main img-fluid mb-3">
+            <!-- thumbnails -->
+            <div class="row mb-4 thumbs">
+            {% if shows.photo_1 %}
+            <div class="col-md-2">
+                <a href="{{shows.photo_1.url}}" data-lightbox="photo_1">
+                <img src="{{shows.photo_1.url}}" rel="lightbox" alt="" class="img-fluid">
+                </a>
+            </div>      
+            {% endif %}
+            {% if shows.photo_2 %}
+                <div class="col-md-2">
+                <a href="{{shows.photo_2.url}}" data-lightbox="photo_1">
+                    <img src="{{shows.photo_2.url}}" rel="lightbox" alt="" class="img-fluid">
+                </a>
+                </div>   
+                {% endif %}
+                {% if shows.photo_3 %}
+                <div class="col-md-2">
+                <a href="{{shows.photo_3.url}}" data-lightbox="photo_1">
+                    <img src="{{shows.photo_3.url}}" rel="lightbox" alt="" class="img-fluid">
+                </a>
+                </div>           
+            {% endif %}
+            {% if shows.photo_4 %}
+            <div class="col-md-2">
+                <a href="{{shows.photo_4.url}}" data-lightbox="photo_1">
+                <img src="{{shows.photo_4.url}}" rel="lightbox" alt="" class="img-fluid">
+                </a>
+            </div>            
+            {% endif %}
+            {% if shows.photo_5 %}
+            <div class="col-md-2">
+                <a href="{{shows.photo_5.url}}" data-lightbox="photo_1">
+                <img src="{{shows.photo_5.url}}" rel="lightbox" alt="" class="img-fluid">
+                </a>
+            </div>           
+            {% endif %}
+            {% if shows.photo_6 %}
+            <div class="col-md-2">
+                <a href="{{shows.photo_6.url}}" data-lightbox="photo_1">
+                <img src="{{shows.photo_6.url}}" rel="lightbox" alt="" class="img-fluid">
+                </a>
+            </div>            
+            {% endif %}
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="property-summary">
+                <div class="row">
+                    <div class="col-sm-12">
+                    <div class="title-box-d section-t4">
+                        <h3 class="title-d">Quick Summary</h3>
+                    </div>
+                    </div>
+                </div>
+                <div class="summary-list">
+                    <ul class="list">
+                    <li class="d-flex justify-content-between">
+                        <strong>Property ID:</strong>
+                        <span>{{shows.listing_id}}</span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                        <strong>Location:</strong>
+                        <span>{{shows.address |truncatechars:24}}</span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                        <strong>Property Type:</strong>
+                        <span>{{shows.listing_type}}</span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                        <strong>Status:</strong>
+                        <span>{{shows.status}}</span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                        <strong>Area:</strong>
+                        <span>{{shows.sqrt}}m
+                        <sup>2</sup>
+                        </span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                        <strong>Beds:</strong>
+                        <span>{{shows.bedrooms}}</span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                        <strong>Baths:</strong>
+                        <span>{{shows.bathrooms}}</span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                        <strong>Toilets:</strong>
+                        <span>{{shows.toilets}}</span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                        <strong>Garage:</strong>
+                        <span>{{shows.garage}}</span>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        </div>
+        <!-- second row price and description -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row justify-content-between g-0">
+                <div class="col-md-5 col-lg-4">
+                    <div class="property-price d-flex justify-content-center foo">
+                    <div class="card-header-c d-flex align-items-center">
+                        <div class="card-box-ico">
+                        <span class="bi bi-cash">&#8358;</span>
+                        </div>
+                        <div class="card-title-c align-self-center">
+                        <h5 class="title-c">{{shows.price|intcomma}}</h5>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-md-7 col-lg-7 section-md-t3">
+                    <div class="row">
+                    <div class="col-sm-12">
+                        <div class="title-box-d">
+                        <h3 class="title-d">Property Description</h3>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="property-description">
+                    <p class="description color-text-a">{{shows.description}}</p>
+                    
+                    </div>
+                    <div class="row section-t3">
+                    <div class="col-sm-12">
+                        <div class="title-box-d">
+                        <h3 class="title-d">Furnishing</h3>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="amenities-list color-text-a">
+                    <ul class="list-a no-margin">
+                        <li>{{shows.furnish}}</li>
+                    </ul>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+            <div class="col-md-11 offset-md-1">
+                <div class="bg-info px-4 rounded py-3">
+                <h5>Safety Tips</h5>
+                <ol>
+                    <li>
+                        Do not make any inspection fee without seeing the agent and property.
+                    </li>
+                    <li>
+                        Only pay Rental fee, Sales fee or any upfront payment after you verify the Landlord.
+                    </li>
+                    <li>
+                        Ensure you meet the Agent in an open location.
+                    </li>
+                    <li>
+                        The Agent does not represent Felicity Property is not liable for any monetary transaction between you and the Agent.
+                    </li>
+                </ol>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row section-t3">
+                <div class="col-sm-12">
+                    <div class="title-box-d">
+                    <h3 class="title-d">Contact Agent</h3>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <img src="{{shows.agent.photo_main.url}}" alt="" class="img-fluid">
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="property-agent">
+                    <h4 class="title-agent">{{shows.agent.name}}</h4>
+                    <p class="color-text-a">
+                        {{shows.agent.description}}
+                    </p>
+                    <ul class="list-unstyled">
+                        <li class="d-flex justify-content-between">
+                        <strong>Phone:</strong>
+                        <span class="color-text-a">{{shows.agent.phone}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                        <strong>Mobile:</strong>
+                        <span class="color-text-a">{{shows.agent.mobile}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                        <strong>Email:</strong>
+                        <span class="color-text-a">{{shows.agent.email}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                        <strong>Joined:</strong>
+                        <span class="color-text-a">{{shows.agent.hired_at|date:"F d, Y"}}</span>
+                        </li>
+                    </ul>
+                    <div class="socials-a">
+                        <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="{{shows.agent.facebook }}">
+                            <i class="bi bi-facebook" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{{shows.agent.twitter }}">
+                            <i class="bi bi-twitter" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{{shows.agent.instagram }}">
+                            <i class="bi bi-instagram" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{{shows.agent.linkedin }}">
+                            <i class="bi bi-linkedin" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4">
+                    <div class="property-contact">
+                    <form class="form-a">
+                        <div class="row">
+                        <div class="col-md-12 mb-1">
+                            <div class="form-group">
+                            <input type="text" class="form-control form-control-lg form-control-a" id="inputName" placeholder="Name *" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-1">
+                            <div class="form-group">
+                            <input type="email" class="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Email *" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-1">
+                            <div class="form-group">
+                            <textarea id="textMessage" class="form-control" placeholder="Comment *" name="message" cols="45" rows="8" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <button type="submit" class="btn btn-a">Send Message</button>
+                        </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </div>
+
+
+    </div>
+</section>    
+
+</main><!-- End #main -->
+    
+ 
+{% endblock content %}
