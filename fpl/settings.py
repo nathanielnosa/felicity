@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # apps
     'pages.apps.PagesConfig',
+    'properties.apps.PropertiesConfig',
+    'agents.apps.AgentsConfig',
 ]
 
 MIDDLEWARE = [
