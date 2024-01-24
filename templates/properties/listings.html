@@ -54,7 +54,7 @@
                   </div>
                   <div class="card-body-a">
                     <div class="price-box d-flex">
-                      <span class="price-a">{{listing.category.title}} | &#8358;{{listing.price|intcomma}}</span>
+                      <span class="price-a">{{listing.category.title}} | &#8358;{{listing.price|intcomma}}{% if listing.category.title == "Short Let" %}/day {% endif %}</span>
                     </div>
                     <a href="{% url 'listing' listing.slug %}" class="link-a">Click here to view
                       <span class="bi bi-chevron-right"></span>

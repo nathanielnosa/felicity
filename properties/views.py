@@ -4,8 +4,8 @@ from . models import *
 # Create your views here.
 
 def index(request):
-    listings = Listing.objects.all().order_by('-created_at')
-    paginator = Paginator(listings,3)
+    listings = Listing.objects.all().order_by('-created_at').filter(is_published=True)
+    paginator = Paginator(listings,6)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
 

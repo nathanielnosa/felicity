@@ -143,7 +143,7 @@
                         <span class="bi bi-cash">&#8358;</span>
                         </div>
                         <div class="card-title-c align-self-center">
-                        <h5 class="title-c">{{shows.price|intcomma}}</h5>
+                        <h5 class="title-c">{{shows.price|intcomma}} {% if shows.category.title == "Short Let" %}/day {% endif %}</h5>
                         </div>
                     </div>
                     </div>
