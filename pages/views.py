@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from properties.models import *
+from properties.choices import *
 from agents.models import *
 # Create your views here.
 def index(request):
     listing = Listing.objects.all().order_by('-created_at').filter(is_published=True)[:4]
-
+    
     context={
         'listing': listing
     }

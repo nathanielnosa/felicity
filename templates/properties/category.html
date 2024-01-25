@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+{% block title %}Felicity Property Limited |Category{% endblock title %}
+
+{% block content %}
+
+
+<main id="main">
+
+    <!-- ======= Intro Single ======= -->
+    <section class="intro-single">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-8">
+            <div class="title-single-box">
+              <h1 class="title-single">Our Amazing Properties</h1>
+              <span class="color-text-a">Buy | Rent |Short Let</span>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-4">
+            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Category
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Intro Single-->
+
+    <!-- ======= Property Grid ======= -->
+    <section class="property-grid grid">
+      <div class="container">
+        <div class="text-end my-2 py-3 w-50 ms-auto">
+          <p class="lead text-start">Filter By:</p>
+          <a class="btn btn-secondary" href="{% url 'category' id=category_id %}">All</a>
+          <a class="btn btn-secondary" href="{% url 'category' id=category_id %}?furnish=Furnished">Furnished</a>
+          <a class="btn btn-secondary" href="{% url 'category' id=category_id %}?furnish=Semi-Furnished">Semi Furnished</a>
+          <a class="btn btn-secondary" href="{% url 'category' id=category_id %}?furnish=Not Furnished">Not Furnished</a>
+      </div>
+
+        <div class="row">
+         {% if listings %}
+           {% for listing in listings  %}
+            {% if furnish_choice == 'all' or listing.furnish == furnish_choice %}
+            <div class="col-md-4">
+              <div class="card-box-a card-shadow">
+                <div class="img-box-a">
+                  <img src="{{listing.photo_main.url}}" style="height:45vh" alt="{{listing.title}}" class="img-a img-fluid">
+                </div>
+                <div class="card-overlay">
+                  <div class="card-overlay-a-content">
+                    <div class="card-header-a">
+                      <h2 class="card-title-a">
+                        <a href="{% url 'listing' listing.slug %}">{{listing.address}}</a>
+                      </h2>
+                    </div>
+                    <div class="card-body-a">
+                      <div class="price-box d-flex">
+                        <span class="price-a">{{listing.category.title}} | &#8358;{{listing.price|intcomma}}{% if listing.category.title == "Short Let" %}/day {% endif %}</span>
+                      </div>
+                      <a href="{% url 'listing' listing.slug %}" class="link-a">Click here to view
+                        <span class="bi bi-chevron-right"></span>
+                      </a>
+                    </div>
+                    <div class="card-footer-a">
+                      <ul class="card-info d-flex justify-content-around">
+                        <li>
+                          <h4 class="card-info-title">Area</h4>
+                          <span>{{listing.sqrt}}m
+                            <sup>2</sup>
+                          </span>
+                        </li>
+                        <li>
+                          <h4 class="card-info-title">Beds</h4>
+                          <span>{{listing.bedrooms}}</span>
+                        </li>
+                        <li>
+                          <h4 class="card-info-title">Baths</h4>
+                          <span>{{listing.bathrooms}}</span>
+                        </li>
+                        <li>
+                          <h4 class="card-info-title">Garages</h4>
+                          <span>{{listing.garage}}</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% else %}
+            <p class="lead">No detail concerning the Furnishing</p>
+            {% endif %}
+           {% endfor %}
+         {% else %}
+           <div class="bg-warning">
+            <p class="lead">No Available Listing</p>
+           </div>
+         {% endif %}
+        </div>
+        <!-- pagination -->
+        <div class="row">
+          <div class="col-sm-12">
+            <nav class="pagination-a">
+              {% if listings.has_other_pages %}
+                
+              <ul class="pagination justify-content-end">
+                {% if listings.has_previous %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{listings.previous_page_number}}" tabindex="-1">
+                    <span class="bi bi-chevron-left"></span>
+                  </a>
+                </li>
+
+                {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link">
+                    <span class="bi bi-chevron-left"></span>
+                  </a>
+                </li>
+                {% endif %}
+                
+                {% for i in listings.paginator.page_range %}
+                  {% if i == listings.number %}
+                  <li class="page-item active">
+                    <a class="page-link">{{i}}</a>
+                  </li>
+                  {% else %}
+                  <li class="page-item">
+                    <a class="page-link" href="?page={{i}}">{{i}}</a>
+                  </li>
+                  {% endif %}
+                {% endfor %}
+              
+                {% if listings.has_next %}
+                  
+                <li class="page-item next">
+                  <a class="page-link" href="?page={{listings.next_page_number}}">
+                    <span class="bi bi-chevron-right"></span>
+                  </a>
+                </li>
+                {% else %}
+                <li class="page-item next disabled">
+                  <a class="page-link">
+                    <span class="bi bi-chevron-right"></span>
+                  </a>
+                </li>
+                  
+                {% endif %}
+
+              </ul>
+              {% endif %}
+
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Property Grid Single-->
+
+  </main><!-- End #main -->
+    
+{% endblock content %}

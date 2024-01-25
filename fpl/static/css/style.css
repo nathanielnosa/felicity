@@ -680,9 +680,14 @@ a:hover {
 /*--------------------------------------------------------------
 # Navbar
 --------------------------------------------------------------*/
+.navbar .container {
+  background: #fff !important;
+  height: 100%;
+}
+
 .navbar-default {
   transition: all 0.5s ease-in-out;
-  background-color: #ffffff;
+  background-color: #ffffff !important;
   padding-top: 0px;
   padding-bottom: 0px;
   -webkit-backface-visibility: hidden;
@@ -831,6 +836,7 @@ a:hover {
 }
 
 @media (min-width: 768px) {
+
   .navbar-default .dropdown .dropdown-menu {
     border-top: 4px solid #2eca6a;
     border-left: 0;

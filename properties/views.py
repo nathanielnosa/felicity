@@ -21,5 +21,21 @@ def listing(request,slug):
     }
     return render(request, 'properties/listing.html',context)
 
-# def search(request):
-#     return render(request, 'properties/agents.html')
+def category(request,id):
+    category = Listing.objects.all().filter(category=id)
+    # Get the furnish choice from the query parameters (defaults to 'all' if not provided)
+    furnish_choice = request.GET.get('furnish', 'all')
+
+    # Filter listings based on the furnish choice
+    if furnish_choice != 'all':
+        category_listings = category.filter(furnish=furnish_choice)
+    else:
+        category_listings = Listing.objects.all().filter(category=id)
+
+
+    context={
+        'listings': category,
+        'furnish_choice': furnish_choice,
+        'category_id':id
+    }
+    return render(request, 'properties/category.html',context)
