@@ -30,7 +30,6 @@ def search(request):
     if 'state' in request.GET:
         state = request.GET['state']
         if state:
-            print(f"Searching for state: {state}")
             queryset = queryset.filter(state__iexact=state)
     # bedrooms
     if 'bedroom' in request.GET:
@@ -57,13 +56,13 @@ def search(request):
     # type
     if 'type' in request.GET:
         type = request.GET['type']
-        print(type,':::::::')
         if type:
             queryset = queryset.filter(category__title__icontains=type)
     
 
     context ={
-        'listings': queryset
+        'listings': queryset,
+        'values':request.GET
     }
     return render(request, 'pages/search.html',context)
     
