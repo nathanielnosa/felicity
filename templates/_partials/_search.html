@@ -7,30 +7,32 @@
     </div>
     <span class="close-box-collapse right-boxed bi bi-x"></span>
     <div class="box-collapse-wrap form">
-      <form class="form-a">
+      <form class="form-a" method="get" action="{% url 'search' %}">
+        {% csrf_token %}
         <div class="row">
           <div class="col-md-12 mb-2">
             <div class="form-group">
               <label class="pb-2" for="Type">Keyword</label>
-              <input type="text" name="keyword" class="form-control form-control-lg form-control-a" placeholder="Keyword">
+              <input type="text" name="keywords" class="form-control form-control-lg form-control-a" placeholder="Keyword">
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="home">Type</label>
-              <select class="form-control form-select form-control-a" id="home">
+              <select name="type" class="form-control form-select form-control-a" id="home">
                 <option selected="true" disabled="disabled">All</option>
-                {% for key,value in house_choices.items  %}
-                <option value="{{key}}">{{value}}</option>
-                {% endfor %}
+                <option value="Rent">For Rent</option>
+                <option value="Sale">For Sale</option>
+                <option value="Short Let">Short Let</option>
+      
               </select>
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="city">City</label>
-              <select name="city" class="form-control form-select form-control-a" id="city">
-                <option selected="true" disabled="disabled">All City</option>
+              <label class="pb-2" for="state">State</label>
+              <select name="state" class="form-control form-select form-control-a" id="state">
+                <option selected="true" disabled="disabled">All State</option>
                 {% for key,value in state_choices.items  %}
                 <option value="{{key}}">{{value}}</option>
                 {% endfor %}
@@ -40,7 +42,7 @@
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="bedrooms">Bedrooms</label>
-              <select class="form-control form-select form-control-a" id="bedrooms">
+              <select name="bedroom" class="form-control form-select form-control-a" id="bedrooms">
                 <option selected="true" disabled="disabled">All</option>
                 {% for key,value in bedroom_choices.items  %}
                 <option value="{{key}}">{{value}}</option>
@@ -51,7 +53,7 @@
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="garages">Garages</label>
-              <select class="form-control form-select form-control-a" id="garages">
+              <select name="garage" class="form-control form-select form-control-a" id="garages">
                 <option selected="true" disabled="disabled">All</option>
                 {% for key,value in garage_choices.items  %}
                 <option value="{{key}}">{{value}}</option>
@@ -62,7 +64,7 @@
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="bathrooms">Bathrooms</label>
-              <select class="form-control form-select form-control-a" id="bathrooms">
+              <select name="bathroom" class="form-control form-select form-control-a" id="bathrooms">
                 <option selected="true" disabled="disabled">All</option>
                 {% for key,value in bathroom_choices.items  %}
                 <option value="{{key}}">{{value}}</option>
@@ -73,7 +75,7 @@
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="price">Min Price</label>
-              <select class="form-control form-select form-control-a" id="price">
+              <select name="price" class="form-control form-select form-control-a" id="price">
                 <option selected="true" disabled="disabled">All</option>
                 {% for key,value in price_choices.items  %}
                 <option value="{{key}}">{{value}}</option>
