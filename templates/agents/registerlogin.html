@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Felicity Property Limited |Agents{% endblock title %}
+
+{% block content %}
+
+{% if page == 'register' %}
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="dsiplay-4">Register</h1>
+          <p class="lead">Hi ✋! Welcome, this will only take a few step.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<div class="container mt-4">
+        <!-- alert -->
+        {% include "_partials/_alert.html" %}
+  <div class="row">
+    <div class="col-md-5 col-12 mx-auto">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4>Account Sign Up</h4>
+        </div>
+        <div class="card-body">
+          <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="is_agent" value="true">
+            <input type="hidden" name="is_user" value="true">
+            {% for fields in forms %}
+            <div class="form-group">
+                {{fields.label}}
+                {{fields}}
+              {% for error in fields.errors %}
+                <small style="color:red">* {{error}}</small>
+              {% endfor %}
+            </div>
+            {% endfor %}
+
+            <div class="form-group my-2">
+              <input class="btn btn-secondary" type="submit" value="Register">
+              <p class="lead float-right">Have an account? <a href="{% url 'login' %}">Login</a> </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% else %}
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="dsiplay-4">Login</h1>
+          <p class="lead">Hello 😃! Welcome back.</p>
+        </div>
+      </div>
+    </div>
+</section>
+  
+
+<div class="contaner mt-4">
+    <!-- alert -->
+    {% include "_partials/_alert.html" %}
+
+  <div class="row">
+    <div class="col-md-5 col-12 mx-auto">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4>Account Login</h4>
+        </div>
+        <div class="card-body">
+            <form class="form" action="" method="post">
+              {% csrf_token %}
+              <div class="form-group my-2">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" name="username" id="" placeholder="username">
+              </div>
+              <div class="form-group my-2">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" name="password" id="" placeholder="Password">
+              </div>
+              <div class="form-group my-2 d-flex justify-content-between">
+                <input type="submit" class="btn btn-secondary" value="Login">
+                <a href="" class="card-link float-right">Forget Password? </a>
+              </div>
+              <p class="lead text-center">You don't have an account? <a class="card-link" href="{% url 'register' %}">Sign up</a> </p>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+    
+{% endblock content %}

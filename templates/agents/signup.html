@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Felicity Property Limited |Agents{% endblock title %}
+
+{% block content %}
+
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="dsiplay-4">Welcome</h1>
+          <p class="lead">Create an account with us today, to have tracks of your activity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+
+  <section id="about" class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 mx-auto">
+            <p class="lead my-3 text-center py-3">Signup as a  User or Agent</p>
+           <div class="d-flex gap-3">
+            <a href="{% url 'register' %}?user=true " class="px-5 py-4 bg-info d-flex align-items-center">
+              <div class="py-4text-center text-white display-6">User</div>
+            </a>
+            <a href="{% url 'register' %}?agent=true" class="px-5 py-4 bg-info d-flex align-items-center">
+              <div class="py-4text-center text-white display-6">Agent</div>
+            </a>  
+           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+        
+    
+{% endblock content %}

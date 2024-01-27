@@ -13,11 +13,12 @@ class Agent(models.Model):
     instagram = models.CharField(max_length=225, blank=True,null=True)
     twitter = models.CharField(max_length=225, blank=True,null=True)
     linkedin = models.CharField(max_length=225, blank=True,null=True)
-    photo_main = models.ImageField(upload_to='agent/%Y%m%d/')
+    photo_main = models.ImageField(upload_to='agent/%Y%m%d/', blank=True,null=True)
     hired_at = models.DateTimeField(auto_now_add=True,blank=True,)
     updated_at = models.DateTimeField(auto_now=True,blank=True,)
-    is_mvp = models.BooleanField(default=False)
+    is_mvp = models.BooleanField(default=False,null=True,blank=True)
     is_agent = models.BooleanField(default=False,null=True,blank=True)
+    is_approved= models.BooleanField(default=False,null=True,blank=True)
 
     def __str__(self):
         return self.name
