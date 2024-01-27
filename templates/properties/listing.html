@@ -287,7 +287,7 @@
             </button>
         </div>
         <div class="modal-body">
-          <form action="{% url 'inquiry' %}" method="POST">
+          <form method="POST">
           {% csrf_token %}
           {% if user.is_authenticated %}
             <input type="hidden" name="user_id" value="{{user.id}}">
@@ -295,7 +295,7 @@
             <input type="hidden" name="user_id" value="0">
           {% endif %}
             <input type="hidden" name="agent_email" value="{{shows.agent.email}}">
-            <input type="hidden" name="listing_id" value="{{shows.id}}">
+            <input type="hidden" name="listing_id" value="{{shows.slug}}">
             <div class="form-group">
               <label for="property_name" class="col-form-label">Property:</label>
               <input type="text" name="listing" class="form-control" value="{{shows.title}}">
@@ -332,7 +332,5 @@
     </div>
   </div>
   
-
-    
  
 {% endblock content %}

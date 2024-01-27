@@ -82,7 +82,7 @@ class Listing(models.Model):
 
 class Inquiry(models.Model):
   listing = models.CharField(max_length=200)
-  listing_id = models.IntegerField()
+  listing_id = models.CharField(max_length = 1000,blank=True,null=True)
   name = models.CharField(max_length=200)
   email = models.CharField(max_length=200)
   phone = models.CharField(max_length=100)

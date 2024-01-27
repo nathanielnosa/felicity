@@ -24,6 +24,46 @@ def index(request):
 
 def listing(request,slug):
     listing = get_object_or_404(Listing, slug=slug)
+  
+    # make inquiry
+
+    if request.method == 'POST':
+      listing_id = request.POST['listing_id']
+      listing = request.POST['listing']
+      name = request.POST['name']
+      email = request.POST['email']
+      phone = request.POST['phone']
+      message = request.POST['message']
+      user_id = request.POST['user_id']
+      agent_email = request.POST['agent_email']
+    
+      #check if user make inquiry already
+      if request.user.is_authenticated:
+        user_id = request.user.id
+        has_contacted = Inquiry.objects.all().filter(listing_id=listing_id, user_id=user_id)
+        if has_contacted:
+          messages.error(request, 'You have already made an inquiry for this listing !')
+          return redirect('/property/'+listing_id)
+
+
+      contact = Inquiry(listing=listing, listing_id=listing_id, name=name, email=email, phone=phone, message=message, user_id=user_id)
+
+      contact.save()
+
+      # send mail
+      subject = 'Property Listing Inquiry'
+      body ='There has been an inquiry for ' + listing + '. sign into the admin panel for more info'
+      send_mail(
+        subject,
+        body,
+        settings.EMAIL_HOST_USER,
+        [agent_email],
+        fail_silently=False 
+      )
+
+      messages.success(request, 'Your request has been submitted, a realtor will get back to you soon!')
+      return redirect('/property/'+listing_id)
+	
     context={
         'shows':listing
     }
@@ -105,43 +145,3 @@ def deletelisting(request, id):
   }
   return render(request, '_partials/_delete.html',context)
 
-
-# make inquiry
-def inquiry(request):
-   if request.method == 'POST':
-    listing_id = request.POST['listing_id']
-    listing = request.POST['listing']
-    name = request.POST['name']
-    email = request.POST['email']
-    phone = request.POST['phone']
-    message = request.POST['message']
-    user_id = request.POST['user_id']
-    agent_email = request.POST['agent_email']
-    
-    #check if user make inquiry already
-    if request.user.is_authenticated:
-      user_id = request.user.id
-      has_contacted = Inquiry.objects.all().filter(listing_id=listing_id, user_id=user_id)
-      if has_contacted:
-        messages.error(request, 'You have already made an inquiry for this listing !')
-        return redirect('/property/'+listing_id)
-
-
-    contact = Inquiry(listing=listing, listing_id=listing_id, name=name, email=email, phone=phone, message=message, user_id=user_id)
-
-    contact.save()
-
-    # send mail
-    subject = 'Property Listing Inquiry'
-    body ='There has been an inquiry for ' + listing + '. sign into the admin panel for more info'
-    send_mail(
-      subject,
-      body,
-      settings.EMAIL_HOST_USER,
-      [agent_email],
-      fail_silently=False 
-    )
-
-    messages.success(request, 'Your request has been submitted, a realtor will get back to you soon!')
-    return redirect('/property/'+listing_id)
-	
