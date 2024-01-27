@@ -20,3 +20,4 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Listing,ListingAdmin)
 admin.site.register(Category,CategoryAdmin)
+admin.site.register(Inquiry)
