@@ -1,6 +1,6 @@
 from django import forms
 
-from . models import Agent
+from . models import Agent,Message
 
 class UserProfile(forms.ModelForm):
     username = forms.CharField(label=('Username'),widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -35,13 +35,13 @@ class Editprofile(forms.ModelForm):
 
 
 
-# class SendMessage(ModelForm):
-#   class Meta:
-#     model = Message
-#     fields = ['name','email','subject','body']
-#     widgets = {
-#       'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'e.g Nathaniel Nosa'}),
-#       'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder':'e.g NathanielNosa@gmail.com'}),
-#       'subject': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'e.g Lookin For A Developer'}),
-#       'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder':'e.g I need a web dev...'}),
-#     }
+class SendMessage(forms.ModelForm):
+  class Meta:
+    model = Message
+    fields = ['name','email','subject','body']
+    widgets = {
+      'name': forms.TextInput(attrs={'class': 'form-control'}),
+      'email': forms.EmailInput(attrs={'class': 'form-control'}),
+      'subject': forms.TextInput(attrs={'class': 'form-control'}),
+      'body': forms.Textarea(attrs={'class': 'form-control'}),
+    }

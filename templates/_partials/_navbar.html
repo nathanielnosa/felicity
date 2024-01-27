@@ -61,6 +61,7 @@
           >
             <a class="nav-link " href="{% url 'contact' %}">Contact</a>
           </li>
+          
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Home
@@ -76,6 +77,17 @@
              
             </ul>
           </li>
+          {% if request.user.is_authenticated %}
+          <li {% if 'dashboard' in request.path %}
+          class="nav-item active"
+          {% else %}
+          class="nav-item"
+          {% endif %}
+          >
+            <a class="nav-link " href="{% url 'dashboard' %}">Dashboard</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'inbox' %}"><i class="bi bi-envelope"></i> </a></li>
+          {% endif %}
         </ul>
       </div>
 

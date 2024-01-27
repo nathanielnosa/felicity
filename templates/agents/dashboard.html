@@ -17,7 +17,6 @@
           class="card-img rounded-circle border border-success mx-auto">
         <div class="card-body">
           <h4>{{profile.name}}</h4>
-          <p class="lead text-dark font-weight-bold"> {{profile.description}} </p>
           <p class="lead text-dark font-italic"> {{profile.hired_at}} </p>
 
           <span>
@@ -46,8 +45,7 @@
 
 
 
-      <h3 class="font-weight-bold my-4">LISTINGS <a href="" class=" bg-success rounded-pill p-2 text-white h6 float-right card-link"><i class="fas fa-plus"></i> Add
-        Listing</a></h3>
+      <h3 class="font-weight-bold my-4">LISTINGS <a href="{% url 'createlisting' %}" class=" bg-success rounded-pill p-2 text-white h6 float-right card-link"><i class="fas fa-plus"></i> Add Listing</a></h3>
       <div class="row">
         {% if project %}
           
@@ -55,17 +53,17 @@
             {% for item in project %}
             <div class="row">
               <div class="col-md-4">
-                <a href="{% url 'project' item.id %}">
-                  <img height="150" src="{{item.main_photo.url}}" alt="{{item.title}}" class="img-fluid">
+                <a href="{% url 'listing' item.slug %}">
+                  <img height="150" src="{{item.photo_main.url}}" alt="{{item.title}}" class="img-fluid">
                 </a>
               </div>
               <div class="col-md-8">
-                <h4> <a href="{% url 'project' item.id %}">{{item.title}}</h4></a>
+                <h4> <a href="{% url 'listing' item.slug %}">{{item.title}}</h4></a>
                 <p>{{item.description|slice:"150"}}</p>
-                <a href="{% url 'deleteproject' item.id %}?next=/account" class="ml-1 bg-danger rounded-pill p-2 text-white h6 float-right card-link"><i class="fas fa-trash"></i>
+                <a href="{% url 'deletelisting' item.id %}?next=/agent/dashboard" class="ml-1 bg-danger rounded-pill p-2 text-white h6 float-right card-link"><i class="fas fa-trash"></i>
                   Delete
                 </a>
-                <a href="{% url 'updateproject' item.id %}" class=" bg-success rounded-pill p-2 text-white h6 float-right card-link"><i class="fas fa-edit"></i> Edit
+                <a href="{% url 'updatelisting' item.id %}" class=" bg-success rounded-pill p-2 text-white h6 float-right card-link"><i class="fas fa-edit"></i> Edit
                 </a>
               </div>
   

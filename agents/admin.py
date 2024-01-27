@@ -10,6 +10,7 @@ class AgentAdmin(admin.ModelAdmin):
     search_fields=('name','description','email')
 
 admin.site.register(Agent,AgentAdmin)
+admin.site.register(Message)
 
 
 

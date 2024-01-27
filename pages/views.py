@@ -1,8 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.db.models import Q
 from properties.models import *
 from properties.choices import *
 from agents.models import *
+from . models import ContactUs
+
+from django.core.mail import send_mail
+from django.conf import settings
+
 
 # Create your views here.
 def index(request):
@@ -68,4 +73,26 @@ def search(request):
     
 
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        subject = request.POST['subject']
+        message = request.POST['message']
+
+        datas = ContactUs(name=name,email=email,subject=subject,message=message)
+
+        datas.save()
+        body=message
+        send_mail(
+            subject,
+            body,
+            settings.EMAIL_HOST_USER,
+            [email],
+            fail_silently= False
+            )
+        return redirect('contact')
+
+
+
     return render(request, 'pages/contact.html')
+

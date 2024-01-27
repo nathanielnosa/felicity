@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- dev -->
+
+<div class="container my-5">
+  <div class="row">
+    {% if show %}
+      <div class="col-md-4">
+        <div class="card text-center p-4">
+          <img height="250"  src="{{show.photo_main.url}}" alt="" class="card-img rounded-circle border border-info mx-auto">
+          <div class="card-body">
+            <h4>{{show.name}}</h4>
+          <p class="lead text-dark font-italic"> {{show.hired_at}} </p>
+            <span>
+              
+              {% if show.facebook %}
+                <a href="" class="card-link m-1"><i class="fab fa-facebook fa-2x text-secondary"></i></a>
+              {% endif %}
+              {% if show.twitter %}
+                <a href="" class="card-link m-1"><i class="fab fa-twitter fa-2x text-secondary"></i></a>
+              {% endif %}
+              {% if show.instagram %}
+                <a href="" class="card-link m-1"><i class="fab fa-instagram fa-2x text-secondary"></i></a>
+              {% endif %}
+              {% if show.linkedin %}
+                <a href="" class="card-link m-1"><i class="fab fa-linkedin fa-2x text-secondary"></i></a>
+              {% endif %}
+                        
+            </span>
+      
+            <p>
+              {% if request.user.agent.id != show.id %}
+                <a href="{% url 'sendmessage' show.id %}" class="btn btn-info d-block font-weight-bold mt-3">
+                  Send Message
+                </a>
+              {% endif %}  
+            </p>
+      
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <h3 class="font-weight-bold my-1">ABOUT ME</h3>
+        {{show.description}}
+        
+
+        <h3 class="font-weight-bold my-4">Listings</h3>
+        <div class="row">
+          {% for item in show.listing_set.all %}
+            
+          <div class="col-md-6">
+            <div class="card my-2">
+              <a href="" class="card-link" target="_blank">
+                <img height="250" src="{{item.photo_main.url}}" alt="{{item.title}}" class="card-img-top">
+                <div class="card-body">
+                  <h4>{{item.title}}</h4>
+                  <em><a href="" class="card-link" target="_blank"> By {{item.agent.name}}</a></em>
+            
+                </div>
+              </a>
+            </div>
+          </div>
+                  
+          {% endfor %}
+        </div>
+
+
+      </div>
+    {% else %}
+      <p class="lead"> No User Profile Available</p>
+    {% endif %}
+    
+   
+  </div>
+</div>
+
+
+{% endblock content %}

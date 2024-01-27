@@ -1,6 +1,11 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from . models import *
+
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
+from .forms import CreateListing
 # Create your views here.
 
 def index(request):
@@ -39,3 +44,60 @@ def category(request,id):
         'category_id':id
     }
     return render(request, 'properties/category.html',context)
+
+
+
+@login_required(login_url="login")
+def createlisting(request):
+  profile = request.user.agent
+  form = CreateListing()
+
+  if request.method == 'POST':
+    form = CreateListing(request.POST, request.FILES)
+    if form.is_valid:
+      listing = form.save(commit=False)
+      listing.agent = profile
+      listing.save()
+      messages.success(request, 'Listing Added Successfully.')
+
+
+      return redirect('dashboard')
+  context = {
+    'form':form,
+  }
+  return render(request, 'properties/create.html',context)
+
+
+@login_required(login_url="login")
+def updatelisting(request, id):
+  profile = request.user.agent
+  update =  profile.listing_set.get(pk=id)
+  form = CreateListing(instance= update)
+
+  if request.method == 'POST':
+    form = CreateListing(request.POST, request.FILES, instance=update)
+    if form.is_valid:
+      form.save()
+      messages.success(request, 'Listing Update Successfully.')
+
+  
+      return redirect('dashboard')
+  context = {
+    'form':form,
+  }
+  return render(request, 'properties/create.html',context)
+
+@login_required(login_url="login")
+def deletelisting(request, id):
+  profile = request.user.agent
+  delete = profile.listing_set.get(pk=id)
+  if request.method == "POST":
+    delete.delete()
+    messages.success(request, 'user delete listing successfully.')
+
+    return redirect('property')
+
+  context = {
+    'delete':delete
+  }
+  return render(request, '_partials/_delete.html',context)

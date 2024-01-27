@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 
 from . models import Agent
-from . forms import UserProfile,Editprofile
+from . forms import UserProfile,Editprofile,SendMessage
 
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -18,7 +18,13 @@ def index(request):
         'agents':agents
     }
     return render(request, 'agents/agents.html',context)
-
+# user single profile
+def singleagent(request,id):
+   agent = Agent.objects.get(id=id)
+   context = {
+    'show':agent,
+    }
+   return render(request, 'agents/agent.html', context)
 
 def signup(request):
     return render(request, 'agents/signup.html')
@@ -177,3 +183,62 @@ def editprofile(request):
     'form':form
   }
   return render(request, 'agents/editprofile.html', context)
+
+
+# send message
+
+def sendmessage(request, pk):
+  recipient = Agent.objects.get(id=pk)
+  form = SendMessage()
+
+  try:
+    sender = request.user.agent
+  except:
+    sender = None
+  
+  if request.method == 'POST':
+    form = SendMessage(request.POST)
+    if form.is_valid():
+      message = form.save(commit=False)
+      message.sender = sender
+      message.recipient = recipient
+      
+      if sender:
+        message.name =sender.name
+        message.email =sender.email
+      message.save()
+
+      messages.success(request, 'Your message was successfully sent.')
+      
+      return redirect('dashboard')
+
+  context = {
+    'form':form,
+    'recipient':recipient
+  }
+  return render(request, 'agents/sendmessage.html', context)
+
+
+@login_required(login_url="login")
+def inbox(request):
+  profile =request.user.agent
+  msg = profile.messages.all()
+  unreadMsg = msg.filter(is_read=False).count()
+  context = {
+    'unreadmsg':unreadMsg,
+    'msg':msg
+  }
+  return render(request, 'agents/inbox.html', context)
+
+@login_required(login_url="login")
+def viewmesg(request, id):
+  profile =request.user.agent
+  msg = profile.messages.get(pk=id)
+  if msg.is_read == False:
+    msg.is_read = True
+    msg.save()
+  context = {
+    'msg':msg
+  }
+  return render(request, 'agents/message.html', context)
+
